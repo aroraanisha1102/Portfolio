@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #05070d;
+  --color-ink-soft: #0a0e18;
+  --color-panel: #0e1320;
+  --color-line: #1c2436;
+  --color-fog: #8a94ad;
+  --color-mist: #b9c2d6;
+  --color-cloud: #eef1f8;
+  --color-indigo: #6366f1;
+  --color-violet: #8b5cf6;
+  --color-cyan: #22d3ee;
+  --color-amber: #f5b14c;
+  --color-emerald: #34d399;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-ink);
+  color: var(--color-mist);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in oklab, var(--color-indigo) 40%, transparent);
+  color: #fff;
+}
+
+/* Ambient background wash */
+.bg-aurora {
+  background:
+    radial-gradient(60rem 40rem at 78% -6%, color-mix(in oklab, var(--color-indigo) 22%, transparent), transparent 60%),
+    radial-gradient(50rem 40rem at 8% 12%, color-mix(in oklab, var(--color-cyan) 12%, transparent), transparent 55%),
+    radial-gradient(50rem 50rem at 50% 120%, color-mix(in oklab, var(--color-violet) 14%, transparent), transparent 60%),
+    var(--color-ink);
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #fff 0%, var(--color-mist) 40%, var(--color-cyan) 75%, var(--color-indigo) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.dotgrid {
+  background-image: radial-gradient(color-mix(in oklab, var(--color-fog) 30%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+.card-glass {
+  background: linear-gradient(180deg, color-mix(in oklab, var(--color-panel) 92%, transparent), color-mix(in oklab, var(--color-ink-soft) 92%, transparent));
+  border: 1px solid var(--color-line);
+  backdrop-filter: blur(10px);
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-18px) translateX(8px); }
+}
+.animate-float-slow { animation: float-slow 9s ease-in-out infinite; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 32s linear infinite; }
+
+@keyframes ping-ring {
+  0% { transform: scale(0.6); opacity: 0.8; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-float-slow, .animate-marquee { animation: none; }
+}
