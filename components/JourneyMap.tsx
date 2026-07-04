@@ -38,6 +38,15 @@ export default function JourneyMap({ active }: { active: number }) {
     }
   }, [active, px, py, rot]);
 
+  const firstOfRegion = new Set<number>();
+  const seen = new Set<string>();
+  stops.forEach((s, i) => {
+    if (!seen.has(s.region)) {
+      seen.add(s.region);
+      firstOfRegion.add(i);
+    }
+  });
+
   return (
     <div className="relative w-full overflow-hidden rounded-2xl border border-line bg-ink-soft/80 p-3 shadow-2xl shadow-black/40">
       <div className="dotgrid absolute inset-0 opacity-40" />
@@ -110,17 +119,18 @@ export default function JourneyMap({ active }: { active: number }) {
                 strokeWidth="2.5"
                 className="transition-all"
               />
-              <text
-                x="0"
-                y="-22"
-                textAnchor="middle"
-                className="fill-current"
-                fill={isActive ? "#eef1f8" : "#8a94ad"}
-                fontSize="18"
-                fontWeight="600"
-              >
-                {s.region}
-              </text>
+              {firstOfRegion.has(i) && (
+                <text
+                  x="0"
+                  y="-22"
+                  textAnchor="middle"
+                  fill={visited ? "#eef1f8" : "#8a94ad"}
+                  fontSize="18"
+                  fontWeight="600"
+                >
+                  {s.region}
+                </text>
+              )}
             </g>
           );
         })}
