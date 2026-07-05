@@ -95,15 +95,15 @@ export const stops: Stop[] = [
   {
     id: "creddnet",
     icon: "🤖",
-    title: "Strategy & Operations",
+    title: "Strategy & Operations Manager",
     company: "CREDDnet",
     note: "Platform modernizing private credit & alternative financing",
     location: "New York, NY (Remote)",
     period: "Dec 2024 – May 2025",
-    challenge: "A fragmented CRM and manual reporting process was slowing the team down.",
+    challenge: "Fragmented CRM and manual reporting were slowing the team down.",
     contribution:
-      "Rebuilt the CRM from scratch in Airtable and built an AI-powered dashboard using Claude Code to automate pipeline summaries and follow-ups. Synthesized market research to inform product and investor strategy.",
-    impact: "Follow-up cycles cut from 14 days → 3 days · manual reporting eliminated.",
+      "Rebuilt the CRM in Airtable and shipped an AI dashboard (Claude Code) to automate pipeline summaries and follow-ups.",
+    impact: "Follow-up cycles cut from 14 → 3 days.",
     coreSkills: ["AI-Assisted Ops", "CRM Architecture", "Market Research", "Investor Reporting"],
     accent: "indigo",
     x: 72,
@@ -112,7 +112,7 @@ export const stops: Stop[] = [
   {
     id: "reframe",
     icon: "🚀",
-    title: "Strategy & Operations Lead",
+    title: "Strategy & Operations Manager",
     company: "Reframe",
     note: "YC S21 · 5M+ downloads",
     location: "Atlanta, GA",

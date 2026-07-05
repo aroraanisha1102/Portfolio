@@ -1,9 +1,17 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState, type ComponentType, type SVGProps } from "react";
 import { motion } from "framer-motion";
 import { stops, type Stop } from "@/lib/data";
-import { Flag, Star } from "./Doodles";
+import {
+  CityBengaluru,
+  CityMumbai,
+  CityNYC,
+  CityLiberty,
+  CityAtlanta,
+  Plane,
+  Star,
+} from "./Doodles";
 
 const accentBg: Record<Stop["accent"], string> = {
   coral: "bg-coral",
@@ -20,67 +28,125 @@ const accentText: Record<Stop["accent"], string> = {
   berry: "text-berry",
 };
 
-type Pt = { x: number; y: number };
-
-// Newest first (top) -> oldest (bottom)
-const ORDER = ["reframe", "creddnet", "nyu", "salesforce", "hpe"];
-const COORDS: Record<string, Pt> = {
-  reframe: { x: 30, y: 130 },
-  creddnet: { x: 70, y: 305 },
-  nyu: { x: 28, y: 480 },
-  salesforce: { x: 72, y: 655 },
-  hpe: { x: 34, y: 830 },
+type CardMeta = {
+  cityShort: string;
+  Doodle: ComponentType<SVGProps<SVGSVGElement>>;
 };
-const ROAD_START: Pt = { x: 50, y: 34 }; // above the newest role (the "next chapter")
-const ROAD_END: Pt = { x: 46, y: 936 }; // below the oldest role (where it began)
 
-function catmullRom(points: Pt[]) {
-  if (points.length < 2) return "";
-  let d = `M ${points[0].x} ${points[0].y}`;
-  for (let i = 0; i < points.length - 1; i++) {
-    const p0 = points[i - 1] ?? points[i];
-    const p1 = points[i];
-    const p2 = points[i + 1];
-    const p3 = points[i + 2] ?? p2;
-    const cp1x = p1.x + (p2.x - p0.x) / 6;
-    const cp1y = p1.y + (p2.y - p0.y) / 6;
-    const cp2x = p2.x - (p3.x - p1.x) / 6;
-    const cp2y = p2.y - (p3.y - p1.y) / 6;
-    d += ` C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${p2.x} ${p2.y}`;
-  }
-  return d;
-}
+const META: Record<string, CardMeta> = {
+  hpe: { cityShort: "Bengaluru", Doodle: CityBengaluru },
+  salesforce: { cityShort: "Mumbai", Doodle: CityMumbai },
+  nyu: { cityShort: "New York", Doodle: CityNYC },
+  creddnet: { cityShort: "New York", Doodle: CityLiberty },
+  reframe: { cityShort: "Atlanta", Doodle: CityAtlanta },
+};
 
-function RoleDetails({ s }: { s: Stop }) {
-  const Row = ({ label, children }: { label: string; children: React.ReactNode }) => (
-    <div>
-      <div className={`font-display text-lg leading-none ${accentText[s.accent]}`}>{label}</div>
-      <p className="mt-1 text-[0.95rem] leading-snug text-ink">{children}</p>
-    </div>
-  );
+// desktop corkboard positions (px within a fixed 960 x 980 board)
+const POS = [
+  { left: 40, top: 20, rot: -4 },
+  { left: 560, top: 70, rot: 3 },
+  { left: 70, top: 360, rot: -3 },
+  { left: 560, top: 420, rot: 4 },
+  { left: 300, top: 720, rot: -2 },
+];
+const CARD_W = 340;
+const CARD_H = 230;
+
+function Postcard({
+  s,
+  num,
+  flipped,
+  onToggle,
+}: {
+  s: Stop;
+  num: number;
+  flipped: boolean;
+  onToggle: () => void;
+}) {
+  const meta = META[s.id];
+  const Doodle = meta.Doodle;
   return (
-    <div className="space-y-3">
-      <div>
-        <div className="font-display text-2xl leading-none text-ink">{s.title}</div>
-        <div className="text-base text-ink-soft">
-          {s.company}
-          {s.note ? ` · ${s.note}` : ""}
+    <div
+      className="h-full w-full cursor-pointer select-none"
+      style={{ perspective: 1200 }}
+      onClick={onToggle}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onToggle())}
+      aria-label={`${s.title} at ${s.company} — ${flipped ? "showing the note" : "click to read the note"}`}
+    >
+      <div
+        className="relative h-full w-full transition-transform duration-500 [transform-style:preserve-3d]"
+        style={{ transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)" }}
+      >
+        {/* FRONT */}
+        <div className="paper-card sketch absolute inset-0 flex flex-col overflow-hidden p-3 shadow-pop [backface-visibility:hidden]">
+          {/* airmail top strip */}
+          <div
+            className="absolute inset-x-0 top-0 h-1.5"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(45deg,#e4572e 0 7px,#f6efdd 7px 14px,#4a56d6 14px 21px,#f6efdd 21px 28px)",
+            }}
+          />
+          {/* number stamp */}
+          <div className={`sketch-alt absolute left-2 top-3.5 z-10 grid h-7 w-7 place-items-center ${accentBg[s.accent]} font-display text-lg text-cream shadow-pop-sm`}>
+            {num}
+          </div>
+          {/* postmark */}
+          <div className="absolute right-2 top-3.5 z-10 rotate-3 rounded border-2 border-dashed border-ink/50 bg-paper/80 px-1.5 py-0.5 text-right">
+            <div className="font-display text-xs leading-none text-ink">{meta.cityShort}</div>
+            <div className="text-[9px] leading-tight text-ink-soft">{s.period}</div>
+          </div>
+
+          {/* city illustration */}
+          <div className="flex flex-1 items-center justify-center pt-4">
+            <Doodle className={`h-24 w-auto ${accentText[s.accent]}`} />
+          </div>
+
+          <div className="flex items-end justify-between">
+            <div className="font-display text-2xl leading-none text-ink">{meta.cityShort}</div>
+            <div className={`text-xs ${accentText[s.accent]}`}>tap to read →</div>
+          </div>
         </div>
-        <div className="text-sm text-ink-soft">
-          {s.location} · {s.period}
-        </div>
-      </div>
-      <Row label="The Challenge">{s.challenge}</Row>
-      <Row label="My Contribution">{s.contribution}</Row>
-      <Row label="The Impact">{s.impact}</Row>
-      <div>
-        <div className={`font-display text-lg leading-none ${accentText[s.accent]}`}>Core Skills</div>
-        <div className="mt-1.5 flex flex-wrap gap-1.5">
-          {s.coreSkills.map((sk) => (
-            <span key={sk} className="sketch bg-cream-deep px-2 py-0.5 text-sm leading-tight">
-              {sk}
-            </span>
-          ))}
+
+        {/* BACK */}
+        <div className="paper-card sketch absolute inset-0 flex overflow-hidden p-3 shadow-pop [backface-visibility:hidden] [transform:rotateY(180deg)]">
+          {/* note */}
+          <div className="flex w-[58%] flex-col pr-2">
+            <div className={`font-display text-lg leading-none ${accentText[s.accent]}`}>
+              Greetings from {meta.cityShort}!
+            </div>
+            <div className="mt-1.5 space-y-1 overflow-hidden text-[11px] leading-snug text-ink">
+              <p>{s.challenge}</p>
+              <p>{s.contribution}</p>
+              <p className="font-bold">{s.impact}</p>
+            </div>
+            <div className="mt-auto font-display text-base text-ink-soft">— A.</div>
+          </div>
+
+          {/* divider */}
+          <div className="mx-1 border-l-2 border-dashed border-ink/40" />
+
+          {/* address block */}
+          <div className="flex w-[42%] flex-col pl-2">
+            <div className={`sketch-alt mb-1 self-end ${accentBg[s.accent]} px-1.5 py-0.5 font-display text-xs text-cream`}>
+              No. {num}
+            </div>
+            <div className="font-display text-[15px] leading-tight text-ink">{s.title}</div>
+            <div className="text-[11px] leading-tight text-ink-soft">
+              {s.company}
+              {s.note ? ` · ${s.note}` : ""}
+            </div>
+            <div className="mt-2 flex flex-wrap gap-1">
+              {s.coreSkills.slice(0, 4).map((sk) => (
+                <span key={sk} className="rounded-sm border border-dashed border-ink/60 bg-cream-deep px-1.5 py-0.5 text-[9px] leading-none text-ink">
+                  {sk}
+                </span>
+              ))}
+            </div>
+            <div className="mt-auto text-right text-[10px] text-ink-soft">↩ tap to flip</div>
+          </div>
         </div>
       </div>
     </div>
@@ -88,155 +154,93 @@ function RoleDetails({ s }: { s: Stop }) {
 }
 
 export default function Roadmap() {
-  const [pinned, setPinned] = useState<number | null>(null);
-  const [hovered, setHovered] = useState<number | null>(null);
-  const active = pinned ?? hovered;
+  const [flipped, setFlipped] = useState<Set<string>>(new Set());
+  const toggle = (id: string) =>
+    setFlipped((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
 
-  const close = () => {
-    setPinned(null);
-    setHovered(null);
-  };
+  const ordered = stops; // chronological: HPE -> Salesforce -> NYU -> CREDDnet -> Reframe
 
-  const items = useMemo(
-    () => ORDER.map((id) => ({ s: stops.find((x) => x.id === id) as Stop, c: COORDS[id] })),
-    []
-  );
-  const roadD = useMemo(
-    () => catmullRom([ROAD_START, ...ORDER.map((id) => COORDS[id]), ROAD_END]),
-    []
-  );
+  // desktop travel-line points (card centers)
+  const centers = POS.map((p) => ({ x: p.left + CARD_W / 2, y: p.top + CARD_H / 2 }));
+  const linePath =
+    `M ${centers[0].x} ${centers[0].y} ` +
+    centers.slice(1).map((c, i) => {
+      const prev = centers[i];
+      const mx = (prev.x + c.x) / 2;
+      return `Q ${mx} ${prev.y} ${c.x} ${c.y}`;
+    }).join(" ");
 
   return (
-    <section id="journey" className="relative mx-auto max-w-4xl px-5 py-20 sm:px-8">
-      <div className="mb-6 text-center">
-        <h2 className="text-5xl text-ink sm:text-6xl">The road so far</h2>
-        <p className="mx-auto mt-2 max-w-md text-lg text-ink-soft">
-          Newest first — hover (or tap) a stop to see the play-by-play.
+    <section id="journey" className="relative mx-auto max-w-5xl px-5 py-16 sm:px-8">
+      <div className="mb-10 text-center">
+        <h2 className="text-5xl text-ink sm:text-6xl">Postcards from my journey</h2>
+        <p className="mx-auto mt-2 max-w-lg text-lg text-ink-soft">
+          India → New York → Atlanta. Tap a postcard to read the note home.
         </p>
       </div>
 
-      <div className="relative mx-auto h-[1550px] w-full sm:h-[1700px]">
-        <svg viewBox="0 0 100 1000" preserveAspectRatio="none" className="absolute inset-0 h-full w-full" aria-hidden>
-          {/* road base */}
-          <path
-            d={roadD}
-            fill="none"
-            stroke="#2a2622"
-            strokeWidth="26"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* lane dashes */}
-          <path
-            d={roadD}
-            fill="none"
-            stroke="#f6efdd"
-            strokeWidth="3"
-            strokeDasharray="1 15"
-            strokeLinecap="round"
-            vectorEffect="non-scaling-stroke"
-          />
+      {/* ---------- desktop corkboard ---------- */}
+      <div className="relative mx-auto hidden lg:block" style={{ width: 960, height: 980 }}>
+        <svg viewBox="0 0 960 980" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
+          <path d={linePath} fill="none" stroke="#b7a985" strokeWidth="3" strokeDasharray="2 12" strokeLinecap="round" />
         </svg>
+        {/* plane doodle mid-route (transatlantic hop) */}
+        <Plane className="absolute h-8 w-8 -rotate-12 text-coral" style={{ left: 470, top: 300 }} />
 
-        {/* next chapter (top) */}
-        <div
-          className="absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center"
-          style={{ left: `${ROAD_START.x}%`, top: `${ROAD_START.y / 10}%` }}
-        >
-          <Flag className="h-10 w-10 text-ink" />
-          <span className="sketch mt-1 whitespace-nowrap border-dashed bg-paper px-3 py-1 font-display text-lg text-ink shadow-pop-sm">
-            Next chapter — AI-Native Strategy &amp; Ops
-          </span>
-        </div>
-
-        {/* milestones (newest -> oldest) */}
-        {items.map(({ s, c }, i) => {
-          const side = c.x < 50 ? "right" : "left";
-          const isActive = active === i;
-          return (
-            <div
-              key={s.id}
-              className="absolute z-20"
-              style={{ left: `${c.x}%`, top: `${c.y / 10}%` }}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              {/* stone */}
-              <motion.button
-                type="button"
-                onClick={() => setPinned((p) => (p === i ? null : i))}
-                initial={{ scale: 0, rotate: -12 }}
-                animate={{ scale: 1, rotate: -4 }}
-                transition={{ type: "spring", stiffness: 220, damping: 14, delay: 0.12 + i * 0.07 }}
-                whileHover={{ scale: 1.12, rotate: 0 }}
-                className={`sketch absolute grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 cursor-pointer place-items-center ${accentBg[s.accent]} font-display text-3xl text-cream shadow-pop`}
-                aria-label={`${s.title} at ${s.company}`}
-              >
-                {i + 1}
-              </motion.button>
-
-              {/* label */}
-              <div className="absolute top-0 w-40 -translate-y-1/2 sm:w-52" style={side === "right" ? { left: 44 } : { right: 44 }}>
-                <div className={`font-display text-xl leading-tight text-ink ${side === "right" ? "text-left" : "text-right"}`}>
-                  {s.title}
-                </div>
-                <div className={`text-base leading-tight text-ink-soft ${side === "right" ? "text-left" : "text-right"}`}>
-                  {s.company}
-                </div>
-                <div className={`mt-0.5 text-sm ${accentText[s.accent]} ${side === "right" ? "text-left" : "text-right"}`}>
-                  {isActive ? "" : "hover for details"}
-                </div>
-              </div>
-
-              {/* desktop popover */}
-              {isActive && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: 8 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="paper-card sketch absolute top-0 z-40 hidden w-[320px] -translate-y-1/2 p-4 shadow-pop sm:block"
-                  style={side === "right" ? { left: 44 } : { right: 44 }}
-                >
-                  <RoleDetails s={s} />
-                </motion.div>
-              )}
-            </div>
-          );
-        })}
-
-        {/* where it began (bottom) */}
-        <div
-          className="absolute z-10 flex -translate-x-1/2 -translate-y-1/2 flex-col items-center text-center"
-          style={{ left: `${ROAD_END.x}%`, top: `${ROAD_END.y / 10}%` }}
-        >
-          <Star className="animate-wiggle h-7 w-7 text-amber" />
-          <span className="sketch mt-1 whitespace-nowrap bg-paper px-3 py-1 font-display text-xl text-ink shadow-pop-sm">
-            Where it began · 2021
-          </span>
-        </div>
+        {ordered.map((s, i) => (
+          <motion.div
+            key={s.id}
+            initial={{ opacity: 0, y: 22, rotate: POS[i].rot }}
+            whileInView={{ opacity: 1, y: 0, rotate: POS[i].rot }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.5, delay: i * 0.08 }}
+            whileHover={{ scale: 1.03, rotate: 0, zIndex: 40 }}
+            className="absolute"
+            style={{
+              left: POS[i].left,
+              top: POS[i].top,
+              width: CARD_W,
+              height: CARD_H,
+              zIndex: flipped.has(s.id) ? 40 : 10,
+            }}
+          >
+            <Postcard s={s} num={i + 1} flipped={flipped.has(s.id)} onToggle={() => toggle(s.id)} />
+          </motion.div>
+        ))}
       </div>
 
-      {/* mobile bottom sheet */}
-      {active !== null && (
-        <div className="sm:hidden">
-          <div className="fixed inset-0 z-[55] bg-ink/25" onClick={close} />
-          <motion.div
-            initial={{ y: 40, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            className="paper-card sketch fixed inset-x-3 bottom-3 z-[60] max-h-[75vh] overflow-auto p-4 shadow-pop"
-          >
-            <button
-              type="button"
-              onClick={close}
-              className="sketch-alt float-right bg-ink px-2.5 py-0.5 text-sm font-bold text-cream"
+      {/* ---------- mobile / tablet stack ---------- */}
+      <div className="flex flex-col items-center gap-3 lg:hidden">
+        {ordered.map((s, i) => (
+          <div key={s.id} className="flex w-full max-w-[340px] flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20, rotate: i % 2 ? 2 : -2 }}
+              whileInView={{ opacity: 1, y: 0, rotate: i % 2 ? 2 : -2 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.45 }}
+              className="w-full"
+              style={{ height: CARD_H, zIndex: flipped.has(s.id) ? 40 : 10 }}
             >
-              close ✕
-            </button>
-            <RoleDetails s={items[active].s} />
-          </motion.div>
-        </div>
-      )}
+              <Postcard s={s} num={i + 1} flipped={flipped.has(s.id)} onToggle={() => toggle(s.id)} />
+            </motion.div>
+            {i < ordered.length - 1 && (
+              <div className="flex flex-col items-center py-1 text-ink-soft">
+                <Plane className="h-5 w-5 rotate-90 text-coral" />
+                <div className="h-3 border-l-2 border-dashed border-ink/40" />
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+
+      <div className="mt-10 flex items-center justify-center gap-2 text-ink-soft">
+        <Star className="animate-wiggle h-5 w-5 text-amber" />
+        <span className="font-display text-xl">next stop: an AI-native team (yours?)</span>
+      </div>
     </section>
   );
 }

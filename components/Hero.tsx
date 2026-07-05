@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { profile } from "@/lib/data";
-import { Star, Sparkle, Squiggle, ArrowDoodle, Underline } from "./Doodles";
+import { Star, Sparkle, Underline } from "./Doodles";
 
 export default function Hero() {
   const [i, setI] = useState(0);
@@ -107,11 +107,6 @@ export default function Hero() {
           </a>
         </motion.div>
 
-        <div className="mt-16 flex items-end gap-3 text-ink-soft">
-          <ArrowDoodle className="animate-bob h-14 w-10 text-coral" />
-          <span className="mb-2 font-display text-2xl">Start here — climb the mountain ↓</span>
-          <Squiggle className="mb-3 hidden h-4 w-24 text-teal sm:block" />
-        </div>
       </div>
 
       <Underline className="pointer-events-none absolute bottom-0 left-1/2 h-4 w-[120%] -translate-x-1/2 text-line" />

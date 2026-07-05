@@ -122,6 +122,109 @@ export function Lightbulb(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function Plane(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 32 32" fill="none" {...props}>
+      <path
+        d="M3 18l26-9-9 22-4-9-9-4z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+        fill="none"
+      />
+      <path d="M16 18l4-4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+// ---- City line-art doodles (viewBox 0 0 140 80) ----
+
+export function CityBengaluru(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 140 80" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M6 70h128" />
+      {/* central Vidhana Soudha */}
+      <path d="M52 70V44h36v26" />
+      <path d="M52 44q18-18 36 0" />
+      <path d="M70 30v-8" />
+      <circle cx="70" cy="19" r="2.2" fill="currentColor" />
+      <path d="M60 70V50M70 70V48M80 70V50" />
+      {/* side towers */}
+      <path d="M20 70V40h16v30" />
+      <path d="M104 70V40h16v30" />
+      <path d="M25 46h6M25 54h6M25 62h6M109 46h6M109 54h6M109 62h6" />
+    </svg>
+  );
+}
+
+export function CityMumbai(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 140 80" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      {/* Gateway of India */}
+      <path d="M48 64V36h44v28" />
+      <path d="M62 64V50q8-10 16 0v14" />
+      <path d="M48 36q22-16 44 0" />
+      <path d="M70 22v-6" />
+      <path d="M36 64V44h10v20M94 64V44h10v20" />
+      <path d="M38 44q4-6 8 0M96 44q4-6 8 0" />
+      {/* water */}
+      <path d="M10 70q6-4 12 0t12 0 12 0 12 0 12 0 12 0 12 0 12 0" />
+    </svg>
+  );
+}
+
+export function CityNYC(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 140 80" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M6 70h128" />
+      {/* Washington Square Arch */}
+      <path d="M40 70V30h56v40" />
+      <path d="M40 30h56" />
+      <path d="M52 70V46q16-16 32 0v24" />
+      <path d="M44 26h48" />
+      {/* tree */}
+      <circle cx="116" cy="48" r="10" />
+      <path d="M116 58v12" />
+    </svg>
+  );
+}
+
+export function CityLiberty(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 140 80" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M6 70h128" />
+      {/* skyline */}
+      <path d="M14 70V50h14v20M28 70V38h16v32M60 70V44h16v26M76 70V54h14v16" />
+      {/* spire tower */}
+      <path d="M46 70V30h12v40M52 30V18" />
+      {/* liberty torch on the right */}
+      <path d="M112 70V40" />
+      <path d="M112 40l-5-9q5-3 10 0z" />
+      <circle cx="112" cy="34" r="0.5" />
+      <path d="M118 70V52h10v18" />
+    </svg>
+  );
+}
+
+export function CityAtlanta(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 140 80" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M6 70h128" />
+      {/* buildings */}
+      <path d="M14 70V48h14v22M28 70V40h14v30" />
+      {/* Westin round tower */}
+      <path d="M48 70V34M58 70V34" />
+      <circle cx="53" cy="30" r="7" />
+      {/* peachtree tower with spire */}
+      <path d="M66 70V40h14v30M73 40V26" />
+      {/* Georgia peach */}
+      <circle cx="112" cy="54" r="11" />
+      <path d="M112 43v-2q4-4 8-3-1 5-6 5" />
+      <path d="M112 45v14" />
+    </svg>
+  );
+}
+
 export function Rocket(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 30" fill="none" {...props}>
