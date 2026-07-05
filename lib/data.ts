@@ -1,197 +1,185 @@
 export const profile = {
   name: "Anisha Arora",
-  role: "Strategy, Operations & GTM",
-  tagline: "I turn ambiguity into operating systems that move revenue.",
+  role: "Strategy & Ops · AI GTM",
+  tagline: "AI-first operator who turns messy problems into systems that grow revenue.",
   intro:
-    "Strategy & Ops leader with 5+ years across enterprise tech and high-growth startups — scaling revenue systems, GTM execution, and data-driven decisions. Now building at the intersection of operations and AI.",
-  location: "Atlanta, GA",
+    "Strategy & Operations and AI-GTM operator. I go from zero to system fast — building the revenue engine, running the experiments, and shipping AI into the workflow.",
+  rotating: ["Strategy & Ops", "AI GTM", "AI-first operator", "0 → 1 builder"],
   email: "Aroraanisha1102@gmail.com",
-  phone: "+1 646 899 8120",
   linkedin: "https://www.linkedin.com/in/aroraanisha1102",
   linkedinHandle: "aroraanisha1102",
+  location: "Atlanta, GA",
 };
-
-export const heroStats = [
-  { value: "5+", label: "Years in strategy & ops" },
-  { value: "3", label: "Countries → cities on the map" },
-  { value: "$150K+", label: "MRR scaled from $45K" },
-];
 
 export type Stop = {
   id: string;
-  region: "India" | "New York" | "Atlanta";
-  flag: string;
-  city: string;
-  org: string;
+  step: number;
+  title: string;
+  company: string;
   note?: string;
-  role: string;
+  location: string;
   period: string;
-  summary: string;
-  skills: string[];
-  results: string[];
-  // position on the 1000 x 560 map canvas
-  x: number;
-  y: number;
+  challenge: string;
+  contribution: string;
+  impact: string;
+  coreSkills: string[];
+  accent: "coral" | "amber" | "teal" | "indigo" | "berry";
+  x: number; // 0..100
+  y: number; // 0..1000
 };
 
+// The road runs top -> bottom, gently winding left/right.
 export const stops: Stop[] = [
   {
     id: "hpe",
-    region: "India",
-    flag: "🇮🇳",
-    city: "Bengaluru, India",
-    org: "Hewlett Packard Enterprise",
-    role: "Enterprise Sales Consultant",
-    period: "Jul 2021 – Oct 2022",
-    summary:
-      "Where it started: owning a portfolio end-to-end and learning how enterprise revenue really moves.",
-    skills: ["Enterprise sales", "Solution design", "Pricing & contracts", "Forecasting"],
-    results: [
-      "Exceeded FY22 targets by 135% — top regional performer",
-      "Cut sales-cycle time 50% via CRM-driven forecasting",
-      "Enabled 70+ channel partners across the ecosystem",
-    ],
-    x: 838,
-    y: 250,
+    step: 1,
+    title: "Enterprise Sales Consultant",
+    company: "Hewlett Packard Enterprise",
+    location: "Bengaluru, India",
+    period: "2021 – 2022",
+    challenge: "Win in a crowded hybrid-cloud market with slow, complex enterprise cycles.",
+    contribution:
+      "Owned strategy, pricing & solution design; rebuilt the pipeline and armed channel partners.",
+    impact: "135% of target · sales cycle cut ~50% · top regional performer.",
+    coreSkills: ["Enterprise GTM", "Pricing", "Forecasting", "Partner enablement"],
+    accent: "coral",
+    x: 26,
+    y: 128,
   },
   {
     id: "salesforce",
-    region: "India",
-    flag: "🇮🇳",
-    city: "Mumbai, India",
-    org: "Salesforce",
-    role: "Account Executive",
-    period: "Oct 2022 – Apr 2023",
-    summary:
-      "Scaling into Fortune 500 deals and full-cycle GTM before making the leap abroad.",
-    skills: ["Full-cycle GTM", "C-suite selling", "Channel co-sell", "Pipeline strategy"],
-    results: [
-      "120% quota on an $8M+ enterprise pipeline",
-      "Closed the first MuleSoft × KPMG partnership",
-      "Drove multi-product adoption across strategic accounts",
-    ],
-    x: 792,
-    y: 292,
+    step: 2,
+    title: "Account Executive",
+    company: "Salesforce",
+    location: "Mumbai, India",
+    period: "2022 – 2023",
+    challenge: "Break MuleSoft into Fortune 500 accounts locked up by incumbents.",
+    contribution: "Ran full-cycle GTM with C-suite buyers and orchestrated co-sell motions.",
+    impact: "120% quota on an $8M+ pipeline · closed a first-of-its-kind KPMG partnership.",
+    coreSkills: ["Full-cycle GTM", "Exec selling", "Co-sell", "Pipeline strategy"],
+    accent: "amber",
+    x: 72,
+    y: 300,
   },
   {
     id: "nyu",
-    region: "New York",
-    flag: "🇺🇸",
-    city: "New York, NY",
-    org: "New York University",
-    note: "MS, IT Project Management — with Distinction",
-    role: "Program Manager, Tech Platforms",
-    period: "Sep 2023 – Dec 2024",
-    summary:
-      "A new country and a shift from selling systems to building them — across an entire university.",
-    skills: ["Program management", "Stakeholder alignment", "Power BI dashboards", "Change enablement"],
-    results: [
-      "Platform initiatives across 7 schools, 10,000+ users",
-      "85%+ adoption on a new cloud LMS rollout",
-      "Bridged technical & business teams with exec dashboards",
-    ],
-    x: 300,
-    y: 158,
+    step: 3,
+    title: "Program Manager · Tech Platforms",
+    company: "New York University",
+    note: "New country, new game — moved to the US.",
+    location: "New York, NY",
+    period: "2023 – 2024",
+    challenge: "Ship enterprise platforms across 7 schools with tangled stakeholders & legacy tech.",
+    contribution: "Led cross-functional programs, built exec dashboards, and drove adoption.",
+    impact: "10,000+ users reached · 85%+ adoption on a new platform rollout.",
+    coreSkills: ["Program mgmt", "Stakeholder alignment", "Analytics / BI", "Change mgmt"],
+    accent: "teal",
+    x: 26,
+    y: 476,
   },
   {
     id: "foundersquare",
-    region: "New York",
-    flag: "🇺🇸",
-    city: "New York, NY",
-    org: "Founder Square",
-    note: "5K+ founder network",
-    role: "Partnerships Manager",
-    period: "Sep 2024 – May 2025",
-    summary:
-      "Plugging into the NYC startup ecosystem — partnerships, community, and GTM in the wild.",
-    skills: ["Partnerships", "Community GTM", "CRM systems", "Event execution"],
-    results: [
-      "Ran 10+ events, 150–500 attendees each",
-      "Built a 300+ founder/investor CRM in Airtable",
-      "Onboarded 70+ founders via 1:1 outreach",
-    ],
-    x: 258,
-    y: 132,
+    step: 4,
+    title: "Partnerships Manager",
+    company: "Founder Square",
+    location: "New York, NY",
+    period: "2024 – 2025",
+    challenge: "Turn a scattered founder network into an engaged, high-signal community.",
+    contribution: "Built partnerships, ran events end-to-end, and stood up the CRM & ops.",
+    impact: "10+ events (150–500 each) · 300+ network · 70+ founders onboarded.",
+    coreSkills: ["Partnerships", "Community GTM", "Ops systems", "CRM"],
+    accent: "indigo",
+    x: 72,
+    y: 650,
   },
   {
     id: "reframe",
-    region: "Atlanta",
-    flag: "🇺🇸",
-    city: "Atlanta, GA",
-    org: "Reframe",
+    step: 5,
+    title: "Strategy & Operations Lead",
+    company: "Reframe",
     note: "YC S21 · 5M+ downloads",
-    role: "Strategy & Operations Lead",
-    period: "May 2025 – Present",
-    summary:
-      "The full picture: strategy, ops, and AI — scaling a startup's core operating system from the ground up.",
-    skills: ["GTM execution", "Operating systems", "Experimentation", "AI product"],
-    results: [
-      "Scaled MRR from $45K → $150K+ in 7 months",
-      "Built Melody, an AI coach serving 40K+ users",
-      "Lifted profit margins from 22% → 31%",
-    ],
-    x: 236,
-    y: 302,
+    location: "Atlanta, GA",
+    period: "2025 – Now",
+    challenge: "Scale a startup from scrappy to systematic — revenue, ops & product together.",
+    contribution:
+      "Built the operating system across onboarding, pricing & retention; ran rapid experiments; worked on a Chatbot (AI Coach) for personalized, proactive coaching.",
+    impact: "MRR $45K → $150K+ · margins 22% → 31% · AI Coach serving 40K+ users.",
+    coreSkills: ["GTM execution", "RevOps", "Experimentation", "AI product & automation"],
+    accent: "berry",
+    x: 44,
+    y: 828,
   },
 ];
 
-export const impactMetrics = [
-  { value: 150, prefix: "$", suffix: "K+", label: "MRR scaled from $45K at Reframe" },
-  { value: 135, suffix: "%", label: "Peak target attainment (FY22, HPE)" },
-  { value: 40, suffix: "K+", label: "Users served by the AI coach I built" },
-  { value: 10000, suffix: "+", label: "Users impacted across NYU platforms", compact: true },
-];
+// Road geometry anchors (same 0..100 x, 0..1000 y space as stops)
+export const roadStart = { x: 50, y: 18 };
+export const roadFinish = { x: 52, y: 958 };
 
-export const skillGroups = [
+export type Project = {
+  title: string;
+  blurb: string;
+  tags: string[];
+  status: "Building" | "Prototype" | "Soon" | "Idea" | "Live";
+  accent: "coral" | "amber" | "teal" | "indigo" | "berry";
+};
+
+export const projects: Project[] = [
   {
-    title: "Strategy & GTM",
+    title: "GTM Copilot",
+    blurb: "Turns raw CRM signals into ready-to-send account plans & outbound in one click.",
+    tags: ["LLM agents", "RevOps", "Automation"],
+    status: "Building",
+    accent: "coral",
+  },
+  {
+    title: "Churn Radar",
+    blurb: "Spots at-risk users from behavior and recommends the next best move.",
+    tags: ["ML", "Retention", "Product analytics"],
+    status: "Prototype",
+    accent: "teal",
+  },
+  {
+    title: "Ops Autopilot",
+    blurb: "Automates the boring ops — onboarding, reporting, reconciliations.",
+    tags: ["AI workflows", "Agents", "Ops"],
+    status: "Building",
     accent: "indigo",
-    items: [
-      "Go-to-market strategy",
-      "Financial modeling",
-      "P&L management",
-      "Revenue optimization",
-      "KPI / OKR design",
-      "Pricing experimentation",
-      "Forecasting",
-    ],
   },
   {
-    title: "Analytics & Experimentation",
-    accent: "cyan",
+    title: "Pricing Lab",
+    blurb: "A sandbox to run pricing & packaging experiments and read results fast.",
+    tags: ["Experimentation", "Pricing", "Analytics"],
+    status: "Soon",
+    accent: "amber",
+  },
+  {
+    title: "Deck Doctor",
+    blurb: "Drop in a rough deck, get a sharper story back.",
+    tags: ["LLM", "Storytelling", "Prompting"],
+    status: "Idea",
+    accent: "berry",
+  },
+];
+
+export const toolkit = [
+  {
+    label: "Strategy & Ops",
+    items: ["GTM strategy", "RevOps", "P&L", "Pricing", "KPIs / OKRs", "Forecasting"],
+  },
+  {
+    label: "AI & Data",
     items: [
+      "LLM workflows",
+      "Agentic automation",
+      "Prompt engineering",
       "SQL",
       "Python",
       "A/B testing",
-      "Cohort & retention analysis",
-      "Funnel optimization",
-      "Root-cause analysis",
-      "Hypothesis-driven testing",
+      "Cohort analysis",
     ],
   },
   {
-    title: "Product & Tools",
-    accent: "amber",
-    items: [
-      "Product analytics",
-      "AI workflow automation",
-      "Salesforce",
-      "HubSpot",
-      "Amplitude",
-      "Power BI",
-      "Jira",
-      "Notion",
-    ],
+    label: "Tools",
+    items: ["Salesforce", "HubSpot", "Amplitude", "Power BI", "Notion", "Jira"],
   },
-];
-
-export const marqueeItems = [
-  "Go-to-market",
-  "Revenue operations",
-  "Experimentation",
-  "AI-enabled workflows",
-  "P&L ownership",
-  "Data-driven strategy",
-  "0→1 operating systems",
-  "Cross-functional execution",
 ];

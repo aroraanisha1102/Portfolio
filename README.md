@@ -1,20 +1,20 @@
 # Anisha Arora — Portfolio
 
-A creative, animation-first portfolio positioning Anisha Arora for **Strategy / Operations / GTM** roles at AI companies. The centerpiece is an **animated journey map** that traces her career route from India → New York → Atlanta, revealing the roles, skills, and results at each stop as you scroll.
+A fun, hand-drawn portfolio positioning Anisha Arora for **Strategy / Operations & AI-GTM** roles. Cream paper background, handwritten type, and a doodle aesthetic — with an interactive **road map of her career** as the hero moment.
 
 ## Highlights
 
-- **Animated roadmap** — a scroll-synced map that draws the flight path between cities and moves a plane between stops while the matching role card highlights.
-- **Impact counters** — headline metrics animate into view.
-- **Lean, brevity-first copy** — short, scannable cards instead of walls of text.
-- **Responsive & accessible** — works on mobile, respects `prefers-reduced-motion`.
+- **The road so far** — a hand-drawn winding road (India → New York → Atlanta) with numbered stepping stones. Hover or tap any stone to reveal the role as **The Challenge · My Contribution · The Impact · Core Skills** — brevity-first, zero fluff. A traveling pin follows the road as you scroll, ending at a checkered finish line: *"To be continued…"*.
+- **The AI Lab** — a living section of AI projects (with status badges) that showcases an AI-first mindset. Easy to swap in real projects as they ship.
+- **Playful, on-brand vibe** — highlighter marker text, sketchy borders, rotating role words, and hand-drawn doodles.
+- **Responsive & accessible** — works on mobile; respects `prefers-reduced-motion`.
 
 ## Tech stack
 
-- [Next.js](https://nextjs.org/) (App Router)
-- TypeScript
+- [Next.js](https://nextjs.org/) (App Router) + TypeScript
 - Tailwind CSS v4
 - Framer Motion
+- Google Fonts: **Caveat** (display) + **Kalam** (body) for the handwritten look
 
 ## Local development
 
@@ -32,12 +32,17 @@ npm run start   # serve the production build
 
 ## Editing content
 
-All content lives in [`lib/data.ts`](lib/data.ts) — profile details, journey stops (with map coordinates), impact metrics, and skills. Update that single file to change what the site says.
+Everything lives in [`lib/data.ts`](lib/data.ts):
+
+- `profile` — name, tagline, rotating roles, email, LinkedIn.
+- `stops` — the road milestones (title, company, Challenge / Contribution / Impact / Core Skills, plus `x`/`y` map coordinates).
+- `projects` — the AI Lab cards (title, blurb, tags, status).
+- `toolkit` — skill groups.
+
+Update that one file to change what the site says.
 
 ## Deploy on Vercel
 
 1. Push this repo to GitHub.
 2. Import it at [vercel.com/new](https://vercel.com/new).
-3. Vercel auto-detects Next.js — no configuration needed. Click **Deploy**.
-
-Optionally add a custom domain in the Vercel dashboard.
+3. Next.js is auto-detected — click **Deploy**. Add a custom domain in the dashboard if you like.

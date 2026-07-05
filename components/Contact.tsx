@@ -1,58 +1,59 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { profile } from "@/lib/data";
-import Reveal from "./Reveal";
+import { Sparkle, Squiggle } from "./Doodles";
 
 export default function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden py-28">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo/15 blur-3xl" />
-        <div className="dotgrid absolute inset-0 opacity-25" />
-      </div>
+    <section id="contact" className="relative mx-auto max-w-3xl px-5 py-24 text-center sm:px-8">
+      <Sparkle className="animate-floaty absolute left-[12%] top-10 h-8 w-8 text-teal" />
+      <Sparkle className="animate-wiggle absolute right-[14%] top-16 h-6 w-6 text-berry" />
 
-      <div className="mx-auto max-w-3xl px-5 text-center sm:px-8">
-        <Reveal>
-          <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan">Next stop?</p>
-          <h2 className="mt-4 text-4xl font-semibold tracking-tight text-cloud sm:text-5xl">
-            Let&apos;s build the next chapter — <span className="text-gradient">together</span>
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-fog">
-            I&apos;m looking for Strategy, Ops & GTM roles at AI companies where I can turn ambiguity
-            into measurable growth. If that sounds like your team, I&apos;d love to talk.
-          </p>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5 }}
+      >
+        <h2 className="text-5xl leading-tight text-ink sm:text-7xl">
+          Let&apos;s build the{" "}
+          <span className="marker" style={{ ["--hl" as string]: "#7fd1c1" }}>
+            next chapter
+          </span>
+        </h2>
+        <Squiggle className="mx-auto mt-3 h-5 w-40 text-coral" />
+        <p className="mx-auto mt-5 max-w-xl text-xl text-ink-soft">
+          Looking for Strategy / Ops & AI-GTM roles at teams building with AI. If that&apos;s you,
+          let&apos;s talk.
+        </p>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href={`mailto:${profile.email}`}
-              className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-indigo to-violet px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-indigo/25 transition-transform hover:-translate-y-0.5"
-            >
-              Email me
-            </a>
-            <a
-              href={profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-line bg-panel/50 px-7 py-3.5 text-sm font-semibold text-cloud transition-colors hover:border-indigo/60"
-            >
-              LinkedIn
-            </a>
-          </div>
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={`mailto:${profile.email}`}
+            className="sketch bg-coral px-7 py-3.5 text-xl font-bold text-cream shadow-pop transition-transform hover:-translate-y-1"
+          >
+            Email me
+          </a>
+          <a
+            href={profile.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sketch-alt bg-paper px-7 py-3.5 text-xl font-bold text-ink shadow-pop transition-transform hover:-translate-y-1"
+          >
+            LinkedIn
+          </a>
+        </div>
 
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-fog">
-            <span>{profile.email}</span>
-            <span className="hidden sm:inline text-line">•</span>
-            <span>{profile.phone}</span>
-            <span className="hidden sm:inline text-line">•</span>
-            <span>{profile.location}</span>
-          </div>
-        </Reveal>
-      </div>
+        <div className="mt-8 text-lg text-ink-soft">
+          {profile.email} · {profile.location}
+        </div>
+      </motion.div>
 
-      <footer className="mx-auto mt-24 max-w-6xl border-t border-line px-5 pt-8 sm:px-8">
-        <div className="flex flex-col items-center justify-between gap-3 text-sm text-fog sm:flex-row">
+      <footer className="mt-20 border-t-2 border-ink/60 pt-6 text-base text-ink-soft">
+        <div className="flex flex-col items-center justify-between gap-2 sm:flex-row">
           <span>© {new Date().getFullYear()} {profile.name}</span>
-          <span>Designed & built with Next.js · Deployed on Vercel</span>
+          <span>Handcrafted with Next.js · Deployed on Vercel</span>
         </div>
       </footer>
     </section>

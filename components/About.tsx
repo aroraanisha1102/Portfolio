@@ -1,76 +1,36 @@
 "use client";
 
-import Reveal from "./Reveal";
+import { motion } from "framer-motion";
+import { Star } from "./Doodles";
 
-const education = [
-  { school: "New York University", detail: "MS, IT Project Management — with Distinction", place: "New York, USA" },
-  { school: "NMIMS, Mumbai", detail: "MBA, Technology Management", place: "Mumbai, India" },
-  { school: "NMIMS, Mumbai", detail: "BS, Computer Engineering", place: "Mumbai, India" },
-];
-
-const certs = ["PMP — Project Management Professional", "Google Project Management"];
+const traits = ["Go-getter", "AI-first", "Bias for action", "Systems thinker", "Zero fluff"];
 
 export default function About() {
   return (
-    <section id="about" className="border-t border-line bg-ink-soft/40 py-24">
-      <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <div className="grid gap-12 lg:grid-cols-2">
-          <Reveal>
-            <div>
-              <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan">About</p>
-              <h2 className="mt-3 text-3xl font-semibold tracking-tight text-cloud sm:text-4xl">
-                An operator who thrives in ambiguity
-              </h2>
-              <div className="mt-6 space-y-4 text-fog">
-                <p>
-                  I started in enterprise sales in India, learned how revenue actually moves, then
-                  moved to the US to build the systems behind it — first across a university, then in
-                  the startup trenches of New York, and now leading strategy and operations at a
-                  venture-backed AI startup.
-                </p>
-                <p>
-                  My edge is going from unstructured problem to scalable system: designing the
-                  operating model, running the experiments, and shipping the AI-enabled workflows that
-                  turn insight into measurable growth. I keep things lean, evidence-led, and shipped.
-                </p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-fog">Education</h3>
-                <ul className="mt-4 space-y-4">
-                  {education.map((e) => (
-                    <li key={e.detail} className="border-l-2 border-line pl-4">
-                      <div className="font-medium text-cloud">{e.detail}</div>
-                      <div className="text-sm text-fog">
-                        {e.school} · {e.place}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-fog">
-                  Certifications
-                </h3>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {certs.map((c) => (
-                    <span
-                      key={c}
-                      className="rounded-full border border-line bg-panel/50 px-3 py-1.5 text-sm text-mist"
-                    >
-                      {c}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </Reveal>
+    <section id="about" className="mx-auto max-w-4xl px-5 py-16 sm:px-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.5 }}
+        className="paper-card sketch relative rotate-[-1deg] p-7 shadow-pop sm:p-10"
+      >
+        <Star className="animate-wiggle absolute -right-4 -top-4 h-10 w-10 text-amber" />
+        <h2 className="text-4xl text-ink sm:text-5xl">A little about me</h2>
+        <p className="mt-4 text-xl leading-relaxed text-ink">
+          I&apos;m happiest turning chaos into systems that grow revenue. I went from enterprise
+          sales in India to building the engine room of a venture-backed AI startup in the US — and
+          I&apos;m AI-first by default: if a workflow can be smarter with an LLM or an agent,
+          I&apos;ll build it.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-2.5">
+          {traits.map((t) => (
+            <span key={t} className="sketch-alt bg-cream-deep px-3 py-1 text-lg shadow-pop-sm">
+              {t}
+            </span>
+          ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

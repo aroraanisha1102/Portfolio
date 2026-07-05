@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Caveat, Kalam } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const kalam = Kalam({
+  variable: "--font-hand",
   subsets: ["latin"],
+  weight: ["300", "400", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const caveat = Caveat({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -18,13 +20,11 @@ export const metadata: Metadata = {
   title: `${profile.name} — ${profile.role}`,
   description: profile.intro,
   keywords: [
-    "Strategy",
-    "Operations",
-    "GTM",
-    "Revenue Operations",
-    "AI",
+    "Strategy & Operations",
+    "AI GTM",
+    "RevOps",
+    "AI-first operator",
     "Anisha Arora",
-    "Product Strategy",
   ],
   authors: [{ name: profile.name }],
   openGraph: {
@@ -46,10 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${kalam.variable} ${caveat.variable} h-full antialiased`}>
       <body className="min-h-full">{children}</body>
     </html>
   );

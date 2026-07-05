@@ -1,25 +1,25 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #05070d;
-  --color-ink-soft: #0a0e18;
-  --color-panel: #0e1320;
-  --color-line: #1c2436;
-  --color-fog: #8a94ad;
-  --color-mist: #b9c2d6;
-  --color-cloud: #eef1f8;
-  --color-indigo: #6366f1;
-  --color-violet: #8b5cf6;
-  --color-cyan: #22d3ee;
-  --color-amber: #f5b14c;
-  --color-emerald: #34d399;
+  --color-cream: #f6efdd;
+  --color-cream-deep: #efe6cf;
+  --color-paper: #fffdf6;
+  --color-ink: #2a2622;
+  --color-ink-soft: #6f6656;
+  --color-line: #ddd0b0;
 
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --color-coral: #e4572e;
+  --color-amber: #eaa221;
+  --color-teal: #1f9e8f;
+  --color-indigo: #4a56d6;
+  --color-berry: #cb437c;
+
+  --font-sans: var(--font-hand), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), "Comic Sans MS", cursive;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html {
@@ -27,63 +27,75 @@ html {
 }
 
 body {
-  background-color: var(--color-ink);
-  color: var(--color-mist);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
   font-family: var(--font-sans);
+  font-size: 1.06rem;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(120, 100, 60, 0.14) 1px, transparent 0);
+  background-size: 26px 26px;
 }
 
 ::selection {
-  background: color-mix(in oklab, var(--color-indigo) 40%, transparent);
-  color: #fff;
+  background: var(--color-amber);
+  color: var(--color-ink);
 }
 
-/* Ambient background wash */
-.bg-aurora {
-  background:
-    radial-gradient(60rem 40rem at 78% -6%, color-mix(in oklab, var(--color-indigo) 22%, transparent), transparent 60%),
-    radial-gradient(50rem 40rem at 8% 12%, color-mix(in oklab, var(--color-cyan) 12%, transparent), transparent 55%),
-    radial-gradient(50rem 50rem at 50% 120%, color-mix(in oklab, var(--color-violet) 14%, transparent), transparent 60%),
-    var(--color-ink);
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.4px;
 }
 
-.text-gradient {
-  background: linear-gradient(100deg, #fff 0%, var(--color-mist) 40%, var(--color-cyan) 75%, var(--color-indigo) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+/* Hand-drawn box outlines via lopsided radii */
+.sketch {
+  border: 2.5px solid var(--color-ink);
+  border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+}
+.sketch-alt {
+  border: 2.5px solid var(--color-ink);
+  border-radius: 15px 225px 15px 255px / 255px 15px 225px 15px;
+}
+.shadow-pop {
+  box-shadow: 4px 5px 0 0 rgba(42, 38, 34, 0.85);
+}
+.shadow-pop-sm {
+  box-shadow: 3px 3px 0 0 rgba(42, 38, 34, 0.8);
 }
 
-.dotgrid {
-  background-image: radial-gradient(color-mix(in oklab, var(--color-fog) 30%, transparent) 1px, transparent 1px);
-  background-size: 22px 22px;
+/* Highlighter marker swipe behind text */
+.marker {
+  background-image: linear-gradient(120deg, transparent 2%, var(--hl, #f6d365) 2%, var(--hl, #f6d365) 98%, transparent 98%);
+  background-repeat: no-repeat;
+  background-size: 100% 46%;
+  background-position: 0 78%;
+  padding: 0 0.1em;
 }
 
-.card-glass {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--color-panel) 92%, transparent), color-mix(in oklab, var(--color-ink-soft) 92%, transparent));
-  border: 1px solid var(--color-line);
-  backdrop-filter: blur(10px);
+.paper-card {
+  background: var(--color-paper);
 }
 
-@keyframes float-slow {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-18px) translateX(8px); }
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
 }
-.animate-float-slow { animation: float-slow 9s ease-in-out infinite; }
+.animate-wiggle { animation: wiggle 3.5s ease-in-out infinite; }
 
-@keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
-.animate-marquee { animation: marquee 32s linear infinite; }
+.animate-floaty { animation: floaty 5s ease-in-out infinite; }
 
-@keyframes ping-ring {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  100% { transform: scale(2.4); opacity: 0; }
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
+.animate-bob { animation: bob 1.8s ease-in-out infinite; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-float-slow, .animate-marquee { animation: none; }
+  .animate-wiggle, .animate-floaty, .animate-bob { animation: none; }
 }
