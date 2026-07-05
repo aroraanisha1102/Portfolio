@@ -6,12 +6,14 @@ import Toolkit from "@/components/Toolkit";
 import About from "@/components/About";
 import Values from "@/components/Values";
 import Contact from "@/components/Contact";
+import BackgroundDoodles from "@/components/BackgroundDoodles";
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative">
+      <BackgroundDoodles />
       <Nav />
-      <main>
+      <main className="relative z-10">
         <Hero />
         <Roadmap />
         <Projects />

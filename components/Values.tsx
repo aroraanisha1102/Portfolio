@@ -17,9 +17,9 @@ export default function Values() {
   return (
     <section id="values" className="mx-auto max-w-5xl px-5 py-16 sm:px-8">
       <div className="mb-10 text-center">
-        <h2 className="text-5xl text-ink sm:text-6xl">How I operate</h2>
+        <h2 className="text-5xl text-ink sm:text-6xl">My Values</h2>
         <p className="mt-2 text-lg text-ink-soft">
-          Not a mission statement — just how I actually work.
+          The four things that guide how I work, every day.
         </p>
       </div>
 

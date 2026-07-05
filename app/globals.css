@@ -95,7 +95,27 @@ h1, h2, h3, .font-display {
 }
 .animate-bob { animation: bob 1.8s ease-in-out infinite; }
 
+/* pulsing ring around interactive flags */
+@keyframes pulse-ring {
+  0% { transform: scale(0.7); opacity: 0.55; }
+  70% { transform: scale(1.7); opacity: 0; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+.pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+
+/* one-time bounce to draw the eye */
+@keyframes flag-bounce {
+  0% { transform: translateY(0); }
+  25% { transform: translateY(-12px); }
+  45% { transform: translateY(0); }
+  62% { transform: translateY(-6px); }
+  80% { transform: translateY(0); }
+  90% { transform: translateY(-2px); }
+  100% { transform: translateY(0); }
+}
+.flag-bounce { animation: flag-bounce 1.6s ease-out 1; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .animate-wiggle, .animate-floaty, .animate-bob { animation: none; }
+  .animate-wiggle, .animate-floaty, .animate-bob, .pulse-ring, .flag-bounce { animation: none; }
 }

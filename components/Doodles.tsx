@@ -97,3 +97,42 @@ export function Sparkle(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function Plant(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 32" fill="none" {...props}>
+      <path d="M12 30V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+      <path d="M12 18c-1-5-5-6-9-6 0 5 4 7 9 7Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+      <path d="M12 15c1-5 5-7 9-7 0 5-4 8-9 8Z" stroke="currentColor" strokeWidth="1.8" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function Lightbulb(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 28" fill="none" {...props}>
+      <path
+        d="M12 2a8 8 0 0 0-5 14c1 1 1.5 2 1.5 3h7c0-1 .5-2 1.5-3A8 8 0 0 0 12 2Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <path d="M9 23h6M10 26h4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function Rocket(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 30" fill="none" {...props}>
+      <path
+        d="M12 2c3.5 3 5 7 5 12l-3 3h-4l-3-3c0-5 1.5-9 5-12Z"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinejoin="round"
+      />
+      <circle cx="12" cy="11" r="2" stroke="currentColor" strokeWidth="1.8" />
+      <path d="M9 20c-1.5 2-1.5 5-1.5 6M15 20c1.5 2 1.5 5 1.5 6M12 20v8" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  );
+}

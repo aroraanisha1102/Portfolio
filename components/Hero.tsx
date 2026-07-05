@@ -109,7 +109,7 @@ export default function Hero() {
 
         <div className="mt-16 flex items-end gap-3 text-ink-soft">
           <ArrowDoodle className="animate-bob h-14 w-10 text-coral" />
-          <span className="mb-2 font-display text-2xl">start here — follow the road</span>
+          <span className="mb-2 font-display text-2xl">Start here — climb the mountain ↓</span>
           <Squiggle className="mb-3 hidden h-4 w-24 text-teal sm:block" />
         </div>
       </div>
