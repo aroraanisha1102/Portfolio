@@ -26,10 +26,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14, rotate: -3 }}
           animate={{ opacity: 1, y: 0, rotate: -2 }}
           transition={{ duration: 0.5 }}
-          className="sketch inline-flex items-center gap-2 bg-paper px-4 py-1.5 text-base font-bold shadow-pop-sm"
+          className="sketch inline-flex items-center gap-2 bg-paper px-4 py-1.5 text-sm font-bold shadow-pop-sm sm:text-base"
         >
-          <span className="h-2.5 w-2.5 rounded-full bg-teal" />
-          AI-first · open to Strategy / Ops & AI-GTM roles
+          <span aria-hidden>🟢</span>
+          Open to Strategy &amp; Ops and AI-GTM roles · building with AI every day
         </motion.div>
 
         <motion.h1
@@ -51,10 +51,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.12 }}
-          className="mt-4 flex flex-wrap items-baseline gap-x-3 text-3xl text-ink sm:text-5xl"
+          className="mt-4 flex flex-wrap items-baseline gap-x-3 text-2xl text-ink sm:text-5xl"
         >
           <span>I do</span>
-          <span className="relative inline-flex h-[1.2em] min-w-[7ch] items-baseline">
+          <span className="relative inline-flex h-[1.3em] min-w-[7ch] items-baseline">
             <AnimatePresence mode="wait">
               <motion.span
                 key={profile.rotating[i]}
@@ -76,8 +76,7 @@ export default function Hero() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mt-7 max-w-xl text-xl leading-relaxed text-ink-soft"
         >
-          {profile.tagline} From enterprise sales in India to the engine room of a venture-backed AI
-          startup in the US — bias for action, allergic to fluff, always shipping.
+          {profile.heroDescription}
         </motion.p>
 
         <motion.div
@@ -97,6 +96,14 @@ export default function Hero() {
             className="sketch-alt bg-paper px-6 py-3 text-lg font-bold text-ink shadow-pop transition-transform hover:-translate-y-1"
           >
             Peek at the AI Lab
+          </a>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-2 py-3 text-lg font-bold text-ink underline decoration-wavy decoration-coral underline-offset-4 transition-transform hover:-translate-y-0.5"
+          >
+            ↓ Download Resume
           </a>
         </motion.div>
 

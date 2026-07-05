@@ -43,6 +43,14 @@ export default function Contact() {
           >
             LinkedIn
           </a>
+          <a
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sketch bg-paper px-7 py-3.5 text-xl font-bold text-ink shadow-pop transition-transform hover:-translate-y-1"
+          >
+            ↓ Resume
+          </a>
         </div>
 
         <div className="mt-8 text-lg text-ink-soft">

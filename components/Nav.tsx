@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { profile } from "@/lib/data";
+import { Sparkle } from "./Doodles";
 
 const links = [
   { href: "#journey", label: "Journey" },
@@ -27,11 +27,10 @@ export default function Nav() {
       }`}
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3 sm:px-8">
-        <a href="#top" className="flex items-center gap-2 text-ink">
-          <span className="sketch grid h-9 w-9 place-items-center bg-amber text-lg font-bold shadow-pop-sm">
-            A
+        <a href="#top" aria-label="Back to top" className="text-ink">
+          <span className="sketch grid h-10 w-10 place-items-center bg-amber shadow-pop-sm transition-transform hover:-translate-y-0.5">
+            <Sparkle className="h-5 w-5 text-ink" />
           </span>
-          <span className="font-display text-2xl leading-none">{profile.name.split(" ")[0]}</span>
         </a>
 
         <div className="hidden items-center gap-6 md:flex">

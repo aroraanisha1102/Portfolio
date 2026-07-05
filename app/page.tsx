@@ -4,6 +4,7 @@ import Roadmap from "@/components/Roadmap";
 import Projects from "@/components/Projects";
 import Toolkit from "@/components/Toolkit";
 import About from "@/components/About";
+import Values from "@/components/Values";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
         <Projects />
         <Toolkit />
         <About />
+        <Values />
         <Contact />
       </main>
     </div>
