@@ -30,19 +30,4 @@ npm run build   # production build
 npm run start   # serve the production build
 ```
 
-## Editing content
 
-Everything lives in [`lib/data.ts`](lib/data.ts):
-
-- `profile` — name, tagline, rotating roles, email, LinkedIn.
-- `stops` — the road milestones (title, company, Challenge / Contribution / Impact / Core Skills, plus `x`/`y` map coordinates).
-- `projects` — the AI Lab cards (title, blurb, tags, status).
-- `toolkit` — skill groups.
-
-Update that one file to change what the site says.
-
-## Deploy on Vercel
-
-1. Push this repo to GitHub.
-2. Import it at [vercel.com/new](https://vercel.com/new).
-3. Next.js is auto-detected — click **Deploy**. Add a custom domain in the dashboard if you like.
