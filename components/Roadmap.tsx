@@ -30,27 +30,30 @@ const accentText: Record<Stop["accent"], string> = {
 
 type CardMeta = {
   cityShort: string;
+  postmark: string;
   Doodle: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
 const META: Record<string, CardMeta> = {
-  hpe: { cityShort: "Bengaluru", Doodle: CityBengaluru },
-  salesforce: { cityShort: "Mumbai", Doodle: CityMumbai },
-  nyu: { cityShort: "New York", Doodle: CityNYC },
-  creddnet: { cityShort: "New York", Doodle: CityLiberty },
-  reframe: { cityShort: "Atlanta", Doodle: CityAtlanta },
+  hpe: { cityShort: "Bengaluru", postmark: "Bengaluru", Doodle: CityBengaluru },
+  salesforce: { cityShort: "Mumbai", postmark: "Mumbai", Doodle: CityMumbai },
+  nyu: { cityShort: "New York", postmark: "Washington Square, NYC", Doodle: CityNYC },
+  creddnet: { cityShort: "New York", postmark: "Wall Street, NYC", Doodle: CityLiberty },
+  reframe: { cityShort: "Atlanta", postmark: "Atlanta", Doodle: CityAtlanta },
 };
 
-// desktop corkboard positions (px within a fixed 960 x 980 board)
+// desktop corkboard positions (px within a fixed 960 x 1000 board)
 const POS = [
-  { left: 40, top: 20, rot: -4 },
-  { left: 560, top: 70, rot: 3 },
-  { left: 70, top: 360, rot: -3 },
-  { left: 560, top: 420, rot: 4 },
-  { left: 300, top: 720, rot: -2 },
+  { left: 20, top: 10, rot: -4 },
+  { left: 500, top: 55, rot: 3 },
+  { left: 35, top: 335, rot: -3 },
+  { left: 500, top: 400, rot: 4 },
+  { left: 250, top: 705, rot: -2 },
 ];
-const CARD_W = 340;
-const CARD_H = 230;
+const CARD_W = 420;
+const CARD_H = 285;
+const BOARD_W = 960;
+const BOARD_H = 1000;
 
 function Postcard({
   s,
@@ -94,14 +97,14 @@ function Postcard({
             {num}
           </div>
           {/* postmark */}
-          <div className="absolute right-2 top-3.5 z-10 rotate-3 rounded border-2 border-dashed border-ink/50 bg-paper/80 px-1.5 py-0.5 text-right">
-            <div className="font-display text-xs leading-none text-ink">{meta.cityShort}</div>
+          <div className="absolute right-2 top-3.5 z-10 max-w-[46%] rotate-3 rounded border-2 border-dashed border-ink/50 bg-paper/80 px-1.5 py-0.5 text-right">
+            <div className="font-display text-xs leading-tight text-ink">{meta.postmark}</div>
             <div className="text-[9px] leading-tight text-ink-soft">{s.period}</div>
           </div>
 
           {/* city illustration */}
           <div className="flex flex-1 items-center justify-center pt-4">
-            <Doodle className={`h-24 w-auto ${accentText[s.accent]}`} />
+            <Doodle className={`h-[7.5rem] w-auto ${accentText[s.accent]}`} />
           </div>
 
           <div className="flex items-end justify-between">
@@ -113,14 +116,14 @@ function Postcard({
         {/* BACK */}
         <div className="paper-card sketch absolute inset-0 flex overflow-hidden p-3 shadow-pop [backface-visibility:hidden] [transform:rotateY(180deg)]">
           {/* note */}
-          <div className="flex w-[58%] flex-col pr-2">
-            <div className={`font-display text-lg leading-none ${accentText[s.accent]}`}>
+          <div className="flex w-[58%] flex-col pr-2.5">
+            <div className={`font-display text-xl leading-tight ${accentText[s.accent]}`}>
               Greetings from {meta.cityShort}!
             </div>
-            <div className="mt-1.5 space-y-1 overflow-hidden text-[11px] leading-snug text-ink">
+            <div className="mt-2 space-y-1.5 overflow-hidden text-[13px] leading-relaxed text-ink">
               <p>{s.challenge}</p>
               <p>{s.contribution}</p>
-              <p className="font-bold">{s.impact}</p>
+              <p className="text-[14px] font-bold leading-snug">{s.impact}</p>
             </div>
             <div className="mt-auto font-display text-base text-ink-soft">— A.</div>
           </div>
@@ -140,12 +143,12 @@ function Postcard({
             </div>
             <div className="mt-2 flex flex-wrap gap-1">
               {s.coreSkills.slice(0, 4).map((sk) => (
-                <span key={sk} className="rounded-sm border border-dashed border-ink/60 bg-cream-deep px-1.5 py-0.5 text-[9px] leading-none text-ink">
+                <span key={sk} className="rounded-sm border border-dashed border-ink/60 bg-cream-deep px-1.5 py-0.5 text-[10px] leading-none text-ink">
                   {sk}
                 </span>
               ))}
             </div>
-            <div className="mt-auto text-right text-[10px] text-ink-soft">↩ tap to flip</div>
+            <div className="mt-auto text-right text-[11px] text-ink-soft">↩ tap to flip</div>
           </div>
         </div>
       </div>
@@ -184,12 +187,12 @@ export default function Roadmap() {
       </div>
 
       {/* ---------- desktop corkboard ---------- */}
-      <div className="relative mx-auto hidden lg:block" style={{ width: 960, height: 980 }}>
-        <svg viewBox="0 0 960 980" className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
+      <div className="relative mx-auto hidden lg:block" style={{ width: BOARD_W, height: BOARD_H }}>
+        <svg viewBox={`0 0 ${BOARD_W} ${BOARD_H}`} className="pointer-events-none absolute inset-0 h-full w-full" aria-hidden>
           <path d={linePath} fill="none" stroke="#b7a985" strokeWidth="3" strokeDasharray="2 12" strokeLinecap="round" />
         </svg>
         {/* plane doodle mid-route (transatlantic hop) */}
-        <Plane className="absolute h-8 w-8 -rotate-12 text-coral" style={{ left: 470, top: 300 }} />
+        <Plane className="absolute h-8 w-8 -rotate-12 text-coral" style={{ left: 455, top: 320 }} />
 
         {ordered.map((s, i) => (
           <motion.div
@@ -216,7 +219,7 @@ export default function Roadmap() {
       {/* ---------- mobile / tablet stack ---------- */}
       <div className="flex flex-col items-center gap-3 lg:hidden">
         {ordered.map((s, i) => (
-          <div key={s.id} className="flex w-full max-w-[340px] flex-col items-center">
+          <div key={s.id} className="flex w-full flex-col items-center" style={{ maxWidth: CARD_W }}>
             <motion.div
               initial={{ opacity: 0, y: 20, rotate: i % 2 ? 2 : -2 }}
               whileInView={{ opacity: 1, y: 0, rotate: i % 2 ? 2 : -2 }}
