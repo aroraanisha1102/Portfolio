@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Archivo, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-body",
@@ -55,7 +56,10 @@ export default function RootLayout({
       lang="en"
       className={`${inter.variable} ${archivo.variable} ${instrument.variable} h-full antialiased`}
     >
-      <body className="min-h-full">{children}</body>
+      <body className="min-h-full">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
