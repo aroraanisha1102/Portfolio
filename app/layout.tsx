@@ -22,7 +22,7 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://anisha-arora.vercel.app"),
+  metadataBase: new URL("https://anishaarora.com"),
   title: `${profile.name} — Strategy & Operations`,
   description: profile.intro,
   keywords: [
