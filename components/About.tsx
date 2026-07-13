@@ -1,38 +1,58 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { Star } from "./Doodles";
-
-const traits = ["Go-getter", "AI-first", "Bias for action", "Systems thinker"];
+import { credentials, principles } from "@/lib/data";
+import Reveal from "./Reveal";
 
 export default function About() {
   return (
-    <section id="about" className="mx-auto max-w-4xl px-5 py-16 sm:px-8">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.5 }}
-        className="paper-card sketch relative rotate-[-1deg] p-7 shadow-pop sm:p-10"
-      >
-        <Star className="animate-wiggle absolute -right-4 -top-4 h-10 w-10 text-amber" />
-        <h2 className="text-4xl text-ink sm:text-5xl">A little about me</h2>
-        <p className="mt-4 text-xl leading-relaxed text-ink">
-          I&apos;m someone who gets restless around unsolved problems — if something&apos;s messy, I
-          want to be the one who untangles it. That instinct took me from enterprise sales in India
-          to building systems for a venture-backed AI startup in the US, and I&apos;ve never really
-          stopped being curious. Outside of work, I&apos;m the person mapping out the next plan
-          before the current one&apos;s even finished — always building something on the side, always
-          asking &ldquo;how can I grow?&rdquo;
-        </p>
-        <div className="mt-6 flex flex-wrap gap-2.5">
-          {traits.map((t) => (
-            <span key={t} className="sketch-alt bg-cream-deep px-3 py-1 text-lg shadow-pop-sm">
-              {t}
-            </span>
-          ))}
-        </div>
-      </motion.div>
+    <section id="about" className="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+      <div className="grid gap-14 lg:grid-cols-[1.1fr_1fr] lg:gap-20">
+        <Reveal>
+          <p className="text-[13px] font-medium uppercase tracking-[0.18em] text-muted">About</p>
+          <h2 className="mt-6 text-[clamp(2.2rem,4.5vw,3.6rem)] font-bold leading-[1.05] tracking-[-0.03em]">
+            Give me something messy.
+            <br />
+            I&apos;ll hand back <span className="serif-accent text-amber">a system.</span>
+          </h2>
+          <div className="mt-8 max-w-lg space-y-5 text-[15px] leading-relaxed text-muted">
+            <p>
+              Engineer by training, MBA by choice, operator by obsession. I started on
+              enterprise sales floors in India — HPE, then Salesforce — crossed the
+              world for a master&apos;s at NYU, and now run strategy &amp; operations
+              at a YC-backed AI startup in Atlanta.
+            </p>
+            <p>
+              The throughline: I don&apos;t just recommend — I build. Every role, I&apos;ve
+              ended up shipping the tool I wished existed, whether that&apos;s an AI
+              coaching product for 40K+ users or an LLM quietly running a CRM.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="border-t border-ink/60">
+            {credentials.map((c) => (
+              <div
+                key={c.label}
+                className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line py-4"
+              >
+                <span className="text-[14px] font-medium">{c.label}</span>
+                <span className="text-[13px] text-muted">{c.detail}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            {principles.map((p, i) => (
+              <div key={p.title}>
+                <span className="display text-[13px] font-bold text-amber">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="display mt-1 text-lg font-bold tracking-tight">{p.title}</h3>
+                <p className="mt-1 text-[13px] leading-relaxed text-muted">{p.body}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </div>
     </section>
   );
 }

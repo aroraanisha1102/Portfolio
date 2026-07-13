@@ -1,23 +1,28 @@
 import type { Metadata } from "next";
-import { Caveat, Kalam } from "next/font/google";
+import { Archivo, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 
-const kalam = Kalam({
-  variable: "--font-hand",
+const inter = Inter({
+  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "700"],
 });
 
-const caveat = Caveat({
-  variable: "--font-display",
+const archivo = Archivo({
+  variable: "--font-head",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+});
+
+const instrument = Instrument_Serif({
+  variable: "--font-accent",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anisha-arora.vercel.app"),
-  title: `${profile.name} — ${profile.role}`,
+  title: `${profile.name} — Strategy & Operations`,
   description: profile.intro,
   keywords: [
     "Strategy & Operations",
@@ -28,14 +33,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: profile.name }],
   openGraph: {
-    title: `${profile.name} — ${profile.role}`,
+    title: `${profile.name} — Strategy & Operations`,
     description: profile.tagline,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — ${profile.role}`,
+    title: `${profile.name} — Strategy & Operations`,
     description: profile.tagline,
   },
 };
@@ -46,7 +51,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${kalam.variable} ${caveat.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${archivo.variable} ${instrument.variable} h-full antialiased`}
+    >
       <body className="min-h-full">{children}</body>
     </html>
   );
