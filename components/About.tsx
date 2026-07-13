@@ -24,6 +24,12 @@ export default function About() {
               ended up shipping the tool I wished existed, whether that&apos;s an AI
               coaching product for 40K+ users or an LLM quietly running a CRM.
             </p>
+            <p>
+              And I&apos;m usually the one handed the ambiguous, cross-functional
+              problems — the ones that fall between org charts. I&apos;ve owned that
+              inside fintech, rebuilding a private-credit platform&apos;s operations
+              from scratch, and across enterprise sales floors selling to the C-suite.
+            </p>
           </div>
         </Reveal>
 

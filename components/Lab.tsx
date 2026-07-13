@@ -10,13 +10,13 @@ export default function Lab() {
             the lab
           </h2>
           <p className="max-w-xs text-[13px] leading-snug text-muted">
-            Tools I&apos;m building with Claude Code &amp; Cursor — shipped fast,
-            iterated in public.
+            Things I&apos;ve built with AI — at work and on weekends. Real tools,
+            shipped fast with Claude Code &amp; Cursor.
           </p>
         </div>
       </Reveal>
 
-      <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
         {projects.map((p, i) => (
           <div
             key={p.title}
