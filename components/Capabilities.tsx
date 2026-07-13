@@ -11,7 +11,7 @@ export default function Capabilities() {
           </h2>
         </Reveal>
 
-        <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
+        <div className="mt-14 grid gap-12 md:grid-cols-2 md:gap-x-12 md:gap-y-14">
           {capabilities.map((c, i) => (
             <Reveal key={c.index} delay={i * 0.08}>
               <div className="border-t border-ink/60 pt-6">

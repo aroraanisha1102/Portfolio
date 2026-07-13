@@ -36,9 +36,11 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 0.2, ease }}
             className="max-w-md text-[15px] leading-relaxed text-muted"
           >
-            I&apos;m Anisha — an operator who builds. Four years turning ambiguous
-            problems into revenue systems and working AI products, from Fortune 500
-            sales floors to the engine room of a YC-backed startup.
+            I&apos;m Anisha — the operator founders lean on when a problem has no
+            clean owner. Four years turning ambiguity into revenue systems, working
+            AI products, and the operating cadence that keeps a scaling company
+            coherent — from Fortune 500 sales floors to the engine room of a
+            YC-backed startup.
           </motion.p>
 
           <motion.div

@@ -1,4 +1,4 @@
-const words = ["strategy", "operations", "ai products", "gtm", "revenue systems"];
+const words = ["strategy", "operations", "chief of staff", "ai products", "gtm", "revenue systems"];
 
 export default function Marquee() {
   const sequence = [...words, ...words];

@@ -1,9 +1,9 @@
 export const profile = {
   name: "Anisha Arora",
   role: "Strategy & Operations · AI-native",
-  tagline: "AI-first operator turning ambiguous problems into revenue systems and shipped products.",
+  tagline: "The operator founders lean on — turning ambiguity into revenue systems, shipped AI products, and operating cadence that scales.",
   intro:
-    "AI-first Strategy & Operations. I turn ambiguous problems into revenue systems and shipped products — from Fortune 500 sales floors to the engine room of a YC-backed startup.",
+    "AI-first Strategy & Operations and Chief of Staff. I turn ambiguous, cross-functional problems into revenue systems and working products — from Fortune 500 sales floors to the engine room of a YC-backed startup.",
   email: "aroraanisha1102@gmail.com",
   linkedin: "https://www.linkedin.com/in/aroraanisha1102",
   linkedinHandle: "aroraanisha1102",
@@ -136,34 +136,25 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    title: "GTM Copilot",
-    blurb: "Turns raw CRM signals into ready-to-send account plans and outbound in one click.",
-    tags: ["LLM agents", "RevOps"],
+    title: "Coach Performance Dashboard",
+    blurb:
+      "Live metrics for Reframe's 60+ coach network — response times, client outcomes, and engagement — replacing manual reporting with one source of truth.",
+    tags: ["Ops analytics", "Dashboards", "Reframe"],
+    status: "Live",
+  },
+  {
+    title: "Arc",
+    blurb:
+      "A habit tracker that connects what you do to how you feel — spot the patterns between your habits and your energy, focus, and growth over time.",
+    tags: ["Consumer app", "Data viz", "Personal build"],
     status: "Building",
   },
   {
-    title: "Churn Radar",
-    blurb: "Spots at-risk users from behavioral signals and recommends the next best move.",
-    tags: ["ML", "Retention"],
-    status: "Prototype",
-  },
-  {
-    title: "Ops Autopilot",
-    blurb: "Automates the boring parts of ops — onboarding, reporting, reconciliations — so humans keep the judgment calls.",
-    tags: ["AI workflows", "Agents"],
-    status: "Building",
-  },
-  {
-    title: "Pricing Lab",
-    blurb: "A sandbox for pricing and packaging experiments with fast, readable results.",
-    tags: ["Experimentation", "Pricing"],
-    status: "Soon",
-  },
-  {
-    title: "Deck Doctor",
-    blurb: "Drop in a rough deck, get a sharper story back.",
-    tags: ["LLM", "Storytelling"],
-    status: "Idea",
+    title: "Pipeline Copilot",
+    blurb:
+      "An LLM wired into the CRM that auto-drafts pipeline summaries, follow-ups, and reminders — built at a private-credit startup, cut follow-up cycles by 78%.",
+    tags: ["LLM", "RevOps", "Claude Code"],
+    status: "Live",
   },
 ];
 
@@ -176,15 +167,21 @@ export const capabilities = [
   },
   {
     index: "02",
-    title: "AI & Product",
-    body: "0→1 AI products and agentic workflows, shipped to real users — prompt architecture, LLM integration, and tools that replace manual work.",
-    tags: ["LLM integration", "Prompt engineering", "Claude Code", "0→1 builds"],
+    title: "Chief of Staff",
+    body: "The right hand who turns strategic intent into execution — operating cadence, board and investor prep, and ownership of the problems that fall between functions.",
+    tags: ["Operating cadence", "Board & investor prep", "Decision quality", "Cross-functional"],
   },
   {
     index: "03",
+    title: "AI & Product",
+    body: "0→1 AI products and agentic workflows shipped to real users — prompt architecture, LLM integration, and tools that replace manual work.",
+    tags: ["LLM integration", "Prompt engineering", "Claude Code", "0→1 builds"],
+  },
+  {
+    index: "04",
     title: "Revenue & GTM",
     body: "Full-cycle go-to-market, from Fortune 500 enterprise deals to startup growth loops — pipeline, partnerships, and experiments that compound.",
-    tags: ["Enterprise sales", "RevOps", "A/B testing", "Cohort analysis"],
+    tags: ["Enterprise sales", "RevOps", "A/B testing", "Partnerships"],
   },
 ];
 
