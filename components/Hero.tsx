@@ -1,115 +1,90 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { profile } from "@/lib/data";
-import { Star, Sparkle, Underline } from "./Doodles";
+import { motion } from "framer-motion";
+import { profile, stats } from "@/lib/data";
+
+const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Hero() {
-  const [i, setI] = useState(0);
-
-  useEffect(() => {
-    const t = setInterval(() => setI((v) => (v + 1) % profile.rotating.length), 2200);
-    return () => clearInterval(t);
-  }, []);
-
   return (
-    <section id="top" className="relative flex min-h-svh items-center overflow-hidden pt-24">
-      {/* doodles */}
-      <Star className="animate-wiggle absolute left-[8%] top-[22%] h-10 w-10 text-coral" />
-      <Sparkle className="animate-floaty absolute right-[14%] top-[24%] h-8 w-8 text-teal" />
-      <Star className="animate-floaty absolute right-[9%] bottom-[26%] h-7 w-7 text-indigo" />
-      <Sparkle className="animate-wiggle absolute left-[12%] bottom-[24%] h-6 w-6 text-berry" />
-
-      <div className="mx-auto w-full max-w-5xl px-5 sm:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 14, rotate: -3 }}
-          animate={{ opacity: 1, y: 0, rotate: -2 }}
-          transition={{ duration: 0.5 }}
-          className="sketch inline-flex items-center gap-2 bg-paper px-4 py-1.5 text-sm font-bold shadow-pop-sm sm:text-base"
-        >
-          <span aria-hidden>🟢</span>
-          Open to Strategy &amp; Ops and AI-GTM roles · building with AI every day
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="mt-6 text-6xl leading-[0.95] text-ink sm:text-8xl"
-        >
-          Hi, I&apos;m{" "}
-          <span className="relative inline-block">
-            <span className="marker" style={{ ["--hl" as string]: "#f6d365" }}>
-              Anisha
-            </span>
-          </span>
-          .
-        </motion.h1>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.12 }}
-          className="mt-4 flex flex-wrap items-baseline gap-x-3 text-2xl text-ink sm:text-5xl"
-        >
-          <span>I do</span>
-          <span className="relative inline-flex h-[1.3em] min-w-[7ch] items-baseline">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={profile.rotating[i]}
-                initial={{ y: 18, opacity: 0, rotate: 4 }}
-                animate={{ y: 0, opacity: 1, rotate: -1 }}
-                exit={{ y: -18, opacity: 0, rotate: -4 }}
-                transition={{ duration: 0.35 }}
-                className="absolute left-0 whitespace-nowrap font-bold text-coral"
-              >
-                {profile.rotating[i]}
-              </motion.span>
-            </AnimatePresence>
-          </span>
-        </motion.div>
-
+    <section id="top" className="relative flex min-h-svh flex-col justify-end pt-28">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-7 max-w-xl text-xl leading-relaxed text-ink-soft"
+          transition={{ duration: 0.6, ease }}
+          className="text-[13px] font-medium uppercase tracking-[0.18em] text-muted"
         >
-          {profile.heroDescription}
+          Strategy & Operations — AI-native
         </motion.p>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        <motion.h1
+          initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.28 }}
-          className="mt-9 flex flex-wrap items-center gap-4"
+          transition={{ duration: 0.8, delay: 0.08, ease }}
+          className="mt-6 text-[clamp(3.6rem,11vw,9.5rem)] font-bold leading-[0.9] tracking-[-0.04em]"
         >
-          <a
-            href="#journey"
-            className="sketch bg-coral px-6 py-3 text-lg font-bold text-cream shadow-pop transition-transform hover:-translate-y-1"
+          strategy
+          <br />
+          that <span className="serif-accent text-amber">ships.</span>
+        </motion.h1>
+
+        <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease }}
+            className="max-w-md text-[15px] leading-relaxed text-muted"
           >
-            Walk my journey →
-          </a>
-          <a
-            href="#projects"
-            className="sketch-alt bg-paper px-6 py-3 text-lg font-bold text-ink shadow-pop transition-transform hover:-translate-y-1"
+            I&apos;m Anisha — an operator who builds. Four years turning ambiguous
+            problems into revenue systems and working AI products, from Fortune 500
+            sales floors to the engine room of a YC-backed startup.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.28, ease }}
+            className="flex flex-wrap items-center gap-3"
           >
-            Peek at the AI Lab
-          </a>
-          <a
-            href={profile.resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-2 py-3 text-lg font-bold text-ink underline decoration-wavy decoration-coral underline-offset-4 transition-transform hover:-translate-y-0.5"
-          >
-            ↓ Download Resume
-          </a>
+            <a
+              href="#journey"
+              className="rounded-full bg-ink px-6 py-3 text-sm font-medium text-bone transition-opacity hover:opacity-80"
+            >
+              The journey ↓
+            </a>
+            <a
+              href={profile.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-ink/25 px-6 py-3 text-sm font-medium transition-colors hover:border-ink"
+            >
+              Resume
+            </a>
+          </motion.div>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, delay: 0.45 }}
+          className="mt-16 grid grid-cols-2 border-t border-line lg:grid-cols-4"
+        >
+          {stats.map((s, i) => (
+            <div
+              key={s.value}
+              className={`py-8 pr-6 ${i > 0 ? "border-line lg:border-l lg:pl-8" : ""} ${
+                i % 2 === 1 ? "border-l pl-6 lg:pl-8" : ""
+              } ${i >= 2 ? "border-t lg:border-t-0" : ""} border-line`}
+            >
+              <div className="display text-4xl font-bold tracking-tight sm:text-5xl">
+                {s.value}
+              </div>
+              <p className="mt-2 max-w-[24ch] text-[13px] leading-snug text-muted">{s.label}</p>
+            </div>
+          ))}
         </motion.div>
-
       </div>
-
-      <Underline className="pointer-events-none absolute bottom-0 left-1/2 h-4 w-[120%] -translate-x-1/2 text-line" />
     </section>
   );
 }
