@@ -132,6 +132,7 @@ export type Project = {
   blurb: string;
   tags: string[];
   status: "Building" | "Prototype" | "Soon" | "Idea" | "Live";
+  href?: string;
 };
 
 export const projects: Project[] = [
@@ -147,7 +148,8 @@ export const projects: Project[] = [
     blurb:
       "A habit tracker that connects what you do to how you feel — spot the patterns between your habits and your energy, focus, and growth over time.",
     tags: ["Consumer app", "Data viz", "Personal build"],
-    status: "Building",
+    status: "Live",
+    href: "https://grow-with-arc.vercel.app/",
   },
   {
     title: "Pipeline Copilot",
