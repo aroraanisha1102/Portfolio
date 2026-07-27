@@ -17,39 +17,60 @@ export default function Lab() {
       </Reveal>
 
       <div className="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2">
-        {projects.map((p, i) => (
-          <div
-            key={p.title}
-            className="group flex min-h-56 flex-col justify-between bg-card p-7 transition-colors hover:bg-paper-2"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-[13px] tabular-nums text-muted">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
-                <span
-                  className={`h-1.5 w-1.5 rounded-full ${
-                    p.status === "Building" || p.status === "Live"
-                      ? "bg-amber"
-                      : "bg-ink/30"
-                  }`}
-                />
-                {p.status}
-              </span>
-            </div>
-            <div className="mt-8">
-              <h3 className="display text-2xl font-bold tracking-tight">{p.title}</h3>
-              <p className="mt-2 text-[14px] leading-relaxed text-muted">{p.blurb}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tags.map((t) => (
-                  <span key={t} className="rounded-full border border-line px-3 py-1 text-[12px] text-muted">
-                    {t}
-                  </span>
-                ))}
+        {projects.map((p, i) => {
+          const cardClassName =
+            "group flex min-h-56 flex-col justify-between bg-card p-7 transition-colors hover:bg-paper-2";
+          const content = (
+            <>
+              <div className="flex items-center justify-between">
+                <span className="text-[13px] tabular-nums text-muted">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.14em] text-muted">
+                  <span
+                    className={`h-1.5 w-1.5 rounded-full ${
+                      p.status === "Building" || p.status === "Live"
+                        ? "bg-amber"
+                        : "bg-ink/30"
+                    }`}
+                  />
+                  {p.status}
+                </span>
               </div>
+              <div className="mt-8">
+                <h3 className="display text-2xl font-bold tracking-tight">{p.title}</h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-muted">{p.blurb}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <span key={t} className="rounded-full border border-line px-3 py-1 text-[12px] text-muted">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </>
+          );
+
+          if (p.href) {
+            return (
+              <a
+                key={p.title}
+                href={p.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={cardClassName}
+              >
+                {content}
+              </a>
+            );
+          }
+
+          return (
+            <div key={p.title} className={cardClassName}>
+              {content}
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         <div className="flex min-h-56 flex-col justify-between bg-coal p-7 text-bone">
           <span className="text-[13px] text-bone-soft">✦</span>
