@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Archivo, Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({
   variable: "--font-body",
