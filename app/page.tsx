@@ -1,10 +1,12 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
-import Journey from "@/components/Journey";
-import Lab from "@/components/Lab";
+import Statement from "@/components/Statement";
+import Impact from "@/components/Impact";
+import Experience from "@/components/Experience";
+import Process from "@/components/Process";
 import Capabilities from "@/components/Capabilities";
-import About from "@/components/About";
+import Work from "@/components/Work";
+import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 
 export default function Home() {
@@ -13,12 +15,13 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <div className="h-16 sm:h-24" />
-        <Marquee />
-        <Journey />
-        <Lab />
+        <Statement />
+        <Impact />
+        <Experience />
+        <Process />
         <Capabilities />
-        <About />
+        <Work />
+        <Faq />
         <Contact />
       </main>
     </>

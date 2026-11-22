@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { profile } from "@/lib/data";
 
 const links = [
-  { href: "#journey", label: "Journey" },
-  { href: "#lab", label: "Lab" },
-  { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#impact", label: "Impact" },
+  { href: "#experience", label: "Experience" },
+  { href: "#approach", label: "Approach" },
+  { href: "#work", label: "Work" },
+  { href: "#faq", label: "FAQ" },
 ];
 
 export default function Nav() {
@@ -21,38 +22,40 @@ export default function Nav() {
   }, []);
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${
-        scrolled ? "border-line bg-paper/85 backdrop-blur-md" : "border-transparent bg-transparent"
-      }`}
-    >
-      <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-        <a href="#top" className="display text-sm font-bold tracking-tight">
-          Anisha Arora
-        </a>
-
-        <div className="hidden items-center gap-8 md:flex">
+    <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-6">
+      <nav
+        className={`mx-auto flex max-w-[1240px] items-center justify-end rounded-full md:justify-between border py-2 pl-5 pr-2 transition-all duration-300 ${
+          scrolled
+            ? "border-white/10 bg-night/80 shadow-[0_10px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl"
+            : "border-transparent bg-transparent"
+        }`}
+      >
+        <div className="hidden items-center gap-7 md:flex">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-[13px] font-medium text-muted transition-colors hover:text-ink"
+              className="text-[14px] text-white/60 transition-colors hover:text-white"
             >
               {l.label}
             </a>
           ))}
         </div>
 
-        <div className="flex items-center gap-4">
-          <span className="hidden text-[13px] text-muted sm:inline">
-            <span className="mr-1.5 text-amber">✦</span>
-            {profile.location}
-          </span>
+        <div className="flex items-center gap-2">
           <a
-            href={`mailto:${profile.email}`}
-            className="rounded-full bg-ink px-4 py-2 text-[13px] font-medium text-bone transition-opacity hover:opacity-80"
+            href={profile.resumeUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden rounded-full px-4 py-2.5 text-[14px] text-white/70 transition-colors hover:text-white sm:inline-block"
           >
-            Get in touch
+            Resume
+          </a>
+          <a
+            href="#contact"
+            className="rounded-full bg-lime px-5 py-2.5 text-[14px] font-medium text-black transition-colors hover:bg-lime-2"
+          >
+            Let&apos;s talk
           </a>
         </div>
       </nav>

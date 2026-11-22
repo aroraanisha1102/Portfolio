@@ -1,47 +1,37 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Archivo, Inter, Instrument_Serif } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
 import { profile } from "@/lib/data";
 
-const inter = Inter({
+const geist = Geist({
   variable: "--font-body",
   subsets: ["latin"],
-});
-
-const archivo = Archivo({
-  variable: "--font-head",
-  subsets: ["latin"],
-});
-
-const instrument = Instrument_Serif({
-  variable: "--font-accent",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anishaarora.com"),
-  title: `${profile.name} — Strategy & Operations`,
+  title: `${profile.name} — Business Operations Lead`,
   description: profile.intro,
   keywords: [
+    "Business Operations",
+    "BizOps",
     "Strategy & Operations",
-    "AI GTM",
-    "RevOps",
-    "AI-first operator",
+    "P&L",
+    "Revenue Operations",
     "Anisha Arora",
   ],
   authors: [{ name: profile.name }],
   openGraph: {
-    title: `${profile.name} — Strategy & Operations`,
+    title: `${profile.name} — Business Operations Lead`,
     description: profile.tagline,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${profile.name} — Strategy & Operations`,
+    title: `${profile.name} — Business Operations Lead`,
     description: profile.tagline,
   },
 };
@@ -54,7 +44,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${archivo.variable} ${instrument.variable} h-full antialiased`}
+      className={`${geist.variable} h-full antialiased`}
     >
       <body className="min-h-full">
         {children}
