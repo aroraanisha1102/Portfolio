@@ -19,7 +19,7 @@ export default function Experience() {
               Where I&apos;ve <span className="text-black/40">operated.</span>
             </>
           }
-          aside="From enterprise sales floors in India to running operations at a YC-backed startup in Atlanta, 2021 to now."
+          aside="From enterprise sales floors in India to leading operations at a YC-backed startup, 2021 to now."
         />
 
         <div className="mt-16 space-y-3">

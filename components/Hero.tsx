@@ -23,7 +23,7 @@ export default function Hero() {
         className="pointer-events-none absolute inset-x-0 top-0 h-[700px] bg-[radial-gradient(ellipse_60%_55%_at_50%_0%,rgba(182,244,25,0.10),transparent_70%)]"
       />
 
-      <div className="relative mx-auto grid min-h-svh max-w-[1240px] items-center gap-14 px-4 pb-16 pt-32 sm:px-8 sm:pt-36 lg:grid-cols-[1fr_400px] lg:gap-16">
+      <div className="relative mx-auto grid min-h-svh max-w-[1240px] items-center gap-14 px-4 pb-16 pt-32 sm:px-8 sm:pt-36 lg:grid-cols-[1fr_280px] lg:gap-16">
         <div>
           <motion.div {...rise(0)}>
             <span className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-[13px] text-white/75">
@@ -75,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 32, scale: 0.97 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.1, delay: 0.2, ease }}
-          className="relative mx-auto w-full max-w-[400px]"
+          className="relative mx-auto w-full max-w-[260px] lg:max-w-[280px]"
         >
           <div className="relative aspect-[4/5] overflow-hidden rounded-[var(--radius-card)] border border-white/10">
             <Image
@@ -83,18 +83,20 @@ export default function Hero() {
               alt="Portrait of Anisha Arora"
               fill
               priority
-              sizes="(min-width: 1024px) 400px, 90vw"
+              sizes="(min-width: 1024px) 280px, 260px"
               className="object-cover object-[50%_25%]"
             />
           </div>
-          <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 rounded-[18px] border border-white/10 bg-night/75 px-4 py-3 backdrop-blur-md">
-            <div>
-              <p className="text-[15px] tracking-[-0.02em] text-white">{profile.name}</p>
-              <p className="text-[12px] text-white/55">Business Operations Lead</p>
+          <div className="absolute inset-x-3 bottom-3 rounded-[16px] border border-white/10 bg-night/75 px-3.5 py-3 backdrop-blur-md">
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-[14px] tracking-[-0.02em] text-white">{profile.name}</p>
+              <span className="shrink-0 rounded-full bg-lime px-2.5 py-0.5 text-[11px] font-medium text-black">
+                {profile.relocation}
+              </span>
             </div>
-            <span className="rounded-full bg-lime px-3 py-1 text-[11px] font-medium text-black">
-              {profile.location}
-            </span>
+            <p className="mt-0.5 text-[12px] text-white/55">
+              {profile.role} · {profile.base}
+            </p>
           </div>
         </motion.div>
       </div>

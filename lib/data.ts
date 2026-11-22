@@ -8,7 +8,9 @@ export const profile = {
   email: "aroraanisha1102@gmail.com",
   linkedin: "https://www.linkedin.com/in/aroraanisha1102",
   linkedinHandle: "aroraanisha1102",
-  location: "Atlanta, GA",
+  location: "Open to relocating to NYC · Based in Atlanta, GA",
+  relocation: "Open to NYC",
+  base: "Based in Atlanta, GA",
   resumeUrl: "/Anisha_Arora_Resume.pdf",
 };
 
